@@ -1,11 +1,11 @@
 <div>
-  <button (click)="handleClick()">
+  <button (click)="handleClick($event)">
     <img
       [ngSrc]="imagePath"
-      [alt]="selectedUser.name"
+      [alt]="user.name"
       width="32"
       height="32"
     />
-    <span>{{ selectedUser.name }}</span>
+    <span>{{ user.name }}</span>
   </button>
 </div>

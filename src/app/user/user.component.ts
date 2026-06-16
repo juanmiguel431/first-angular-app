@@ -17,17 +17,20 @@ type User = {
   styleUrl: './user.component.css',
 })
 export class UserComponent {
-  protected selectedUser: User;
+  protected user: User;
 
   constructor() {
-    this.selectedUser = DUMMY_USERS[randomIndex];
+    this.user = DUMMY_USERS[randomIndex];
   }
 
   protected get imagePath(): string {
-    return `images/users/${this.selectedUser.avatar}`;
+    return `images/users/${this.user.avatar}`;
   }
 
-  protected handleClick() {
-    console.log('clicked');
+  protected handleClick(event: MouseEvent) {
+    console.log(event);
+
+    const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
+    this.user = DUMMY_USERS[randomIndex];
   }
 }
