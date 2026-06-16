@@ -8,8 +8,8 @@ import { NgOptimizedImage } from '@angular/common';
   styleUrl: './user.component.css',
 })
 export class UserComponent {
-  @Input() public avatar: string;
-  @Input() public name: string;
+  @Input({ required: true }) public avatar: string;
+  @Input({ required: true }) public name: string;
 
   constructor() {
     this.avatar = '';
