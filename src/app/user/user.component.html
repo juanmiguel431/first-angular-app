@@ -1,7 +1,7 @@
 <div>
   <button (click)="handleClick($event)">
     <img
-      [ngSrc]="imagePath"
+      [ngSrc]="computedImagePath()"
       [alt]="user.name"
       width="32"
       height="32"
