@@ -22,4 +22,8 @@ export class UserComponent {
   constructor() {
     this.selectedUser = DUMMY_USERS[randomIndex];
   }
+
+  public get imagePath(): string {
+    return `images/users/${this.selectedUser.avatar}`;
+  }
 }
