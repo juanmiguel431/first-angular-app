@@ -3,7 +3,7 @@ import { DUMMY_USERS } from '../dummy-users';
 
 const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
 
-type UserType = {
+type User = {
   id: string;
   name: string;
   avatar: string;
@@ -12,11 +12,11 @@ type UserType = {
 @Component({
   selector: 'app-user',
   imports: [],
-  templateUrl: './user.html',
-  styleUrl: './user.css',
+  templateUrl: './user.component.html',
+  styleUrl: './user.component.css',
 })
-export class User {
-  selectedUser: UserType;
+export class UserComponent {
+  public selectedUser: User;
 
   constructor() {
     this.selectedUser = DUMMY_USERS[randomIndex];
