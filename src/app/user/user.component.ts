@@ -17,13 +17,17 @@ type User = {
   styleUrl: './user.component.css',
 })
 export class UserComponent {
-  public selectedUser: User;
+  protected selectedUser: User;
 
   constructor() {
     this.selectedUser = DUMMY_USERS[randomIndex];
   }
 
-  public get imagePath(): string {
+  protected get imagePath(): string {
     return `images/users/${this.selectedUser.avatar}`;
+  }
+
+  protected handleClick() {
+    console.log('clicked');
   }
 }
