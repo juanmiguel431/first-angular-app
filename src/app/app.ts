@@ -13,4 +13,8 @@ import { User } from './models';
 })
 export class App {
   protected readonly users: User[] = DUMMY_USERS;
+
+  protected onUserSelect(id: string) {
+    console.log(id);
+  }
 }
