@@ -12,7 +12,7 @@ export class UserComponent {
   public avatar = input.required<string>()
   public name = input.required<string>()
 
-  @Output() onSelect = new EventEmitter();
+  @Output() onSelect = new EventEmitter<string>();
 
   protected imagePath = computed(() => `images/users/${this.avatar()}`)
 
