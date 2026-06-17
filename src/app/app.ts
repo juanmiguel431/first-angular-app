@@ -4,7 +4,7 @@ import { Header } from './header/header';
 import { UserComponent } from './user/user.component';
 import { DUMMY_USERS } from './dummy-users';
 import { User } from './models';
-import { UserTasks } from './user-task/user-tasks.component';
+import { UserTasks } from './user-tasks/user-tasks.component';
 
 const usersMap = new Map<string, User>(
   DUMMY_USERS.map((user) => [user.id, user])
