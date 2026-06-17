@@ -4,17 +4,19 @@ import { Header } from './header/header';
 import { UserComponent } from './user/user.component';
 import { DUMMY_USERS } from './dummy-users';
 import { User } from './models';
+import { UserTasks } from './user-task/user-tasks.component';
 
 @Component({
   selector: 'app-root',
-  imports: [Header, UserComponent],
+  imports: [Header, UserComponent, UserTasks],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
 export class App {
   protected readonly users: User[] = DUMMY_USERS;
+  protected user: User | undefined;
 
   protected onUserSelect(id: string) {
-    console.log(id);
+    this.user = this.users.find(user => user.id === id);
   }
 }
