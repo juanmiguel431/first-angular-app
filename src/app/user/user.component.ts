@@ -1,4 +1,4 @@
-import { Component, computed, EventEmitter, input, Output } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 
 @Component({
@@ -8,16 +8,15 @@ import { NgOptimizedImage } from '@angular/common';
   styleUrl: './user.component.css',
 })
 export class UserComponent {
-  public id = input.required<string>()
-  public avatar = input.required<string>()
-  public name = input.required<string>()
+  public readonly id = input.required<string>();
+  public readonly avatar = input.required<string>();
+  public readonly name = input.required<string>();
+  public readonly onSelect = output<string>();
 
-  @Output() onSelect = new EventEmitter<string>();
-
-  protected imagePath = computed(() => `images/users/${this.avatar()}`)
+  protected readonly imagePath = computed(() => `images/users/${this.avatar()}`);
 
   protected handleClick(event: MouseEvent) {
     console.log(event);
-    this.onSelect.emit(this.id())
+    this.onSelect.emit(this.id());
   }
 }
