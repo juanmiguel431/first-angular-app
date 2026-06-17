@@ -6,6 +6,10 @@ import { DUMMY_USERS } from './dummy-users';
 import { User } from './models';
 import { UserTasks } from './user-task/user-tasks.component';
 
+const usersMap = new Map<string, User>(
+  DUMMY_USERS.map((user) => [user.id, user])
+);
+
 @Component({
   selector: 'app-root',
   imports: [Header, UserComponent, UserTasks],
@@ -17,6 +21,6 @@ export class App {
   protected user: User | undefined;
 
   protected onUserSelect(id: string) {
-    this.user = this.users.find(user => user.id === id);
+    this.user = usersMap.get(id);
   }
 }
