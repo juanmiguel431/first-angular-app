@@ -7,5 +7,5 @@ import { Component, input } from '@angular/core';
   styleUrl: './user-tasks.component.css',
 })
 export class UserTasks {
-  public readonly name = input<string>();
+  public readonly name = input.required<string>();
 }
