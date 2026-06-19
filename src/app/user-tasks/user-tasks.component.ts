@@ -1,6 +1,6 @@
 import { Component, computed, input } from '@angular/core';
 import { UserTask } from './user-task/user-task.component';
-import { Task, User } from '../models';
+import type { Task, User } from '../models';
 
 const DUMMY_TASKS: Task[] = [
   {
