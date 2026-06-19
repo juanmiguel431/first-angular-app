@@ -1,0 +1,47 @@
+
+
+<div>
+  <label for="title">Title</label>
+  <input
+    type="text"
+    name="title"
+    id="title"
+    [value]="title"
+    (input)="onFormTitleChange($event)"
+  />
+
+  <br>
+  <br>
+
+  <label for="summary">Summary</label>
+  <input
+    type="text"
+    name="summary"
+    id="summary"
+    [value]="summary"
+    (input)="onFormSummaryChange($event)"
+  >
+
+
+  <br>
+  <br>
+
+  <label for="dueDate">Due date</label>
+  <input
+    type="date"
+    name="dueDate"
+    id="dueDate"
+    [value]="dueDate"
+    (input)="onFormDueDateChange($event)"
+  >
+
+  <br>
+  <br>
+
+  <button (click)="onFormClose()">Close</button>
+
+  <br>
+  <br>
+
+  <button (click)="onFormSubmit()">Submit</button>
+</div>

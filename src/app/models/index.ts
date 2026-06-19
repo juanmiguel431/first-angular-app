@@ -18,3 +18,9 @@ export type UserTaskEvent = {
   event: MouseEvent;
   task: Task;
 };
+
+export type UserTaskFormDto = {
+  title: string;
+  summary: string;
+  dueDate: string;
+};

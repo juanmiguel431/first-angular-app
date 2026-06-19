@@ -2,19 +2,32 @@
 <section id="tasks">
   <header>
     <h2>{{ user().name }}'s Tasks</h2>
-    <menu>
-      <button>Add Task</button>
-    </menu>
+    @if (!openCreateForm) {
+      <menu>
+        <button
+          (click)="onAddTask($event)"
+        >
+          Add Task
+        </button>
+      </menu>
+    }
   </header>
 
-  <ul>
-    @for (task of activeTasks(); track task.id) {
-      <li>
-        <app-user-task
-          [task]="task"
-          (onComplete)="onTaskCompleted($event)"
-        />
-      </li>
-    }
-  </ul>
+  @if (openCreateForm) {
+    <app-user-task-form
+      (onClose)="onFormClose()"
+      (onSubmit)="onFormSubmit($event)"
+    />
+  } @else {
+    <ul>
+      @for (task of activeTasks(); track task.id) {
+        <li>
+          <app-user-task
+            [task]="task"
+            (onComplete)="onTaskCompleted($event)"
+          />
+        </li>
+      }
+    </ul>
+  }
 </section>
