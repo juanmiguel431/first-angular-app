@@ -18,9 +18,9 @@ const usersMap = new Map<string, User>(
 })
 export class App {
   protected readonly users: User[] = DUMMY_USERS;
-  protected user: User | undefined;
+  protected selectedUser: User | undefined;
 
   protected onUserSelect(id: string) {
-    this.user = usersMap.get(id);
+    this.selectedUser = usersMap.get(id);
   }
 }

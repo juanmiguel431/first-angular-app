@@ -11,8 +11,11 @@ import { User } from '../models';
 export class UserComponent {
   public readonly user = input.required<User>();
   public readonly onSelect = output<string>();
+  public readonly active = input(false);
 
   protected readonly imagePath = computed(() => `images/users/${this.user().avatar}`);
+
+  protected readonly buttonStyle = computed(() => this.active() ? 'active' : '');
 
   protected handleClick(event: MouseEvent) {
     console.log(event);

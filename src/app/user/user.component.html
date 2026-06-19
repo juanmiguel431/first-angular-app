@@ -1,5 +1,5 @@
 <div>
-  <button (click)="handleClick($event)">
+  <button (click)="handleClick($event)" [class]="buttonStyle()">
     <img
       [ngSrc]="imagePath()"
       [alt]="user().name"
