@@ -15,8 +15,6 @@ export class UserComponent {
 
   protected readonly imagePath = computed(() => `images/users/${this.user().avatar}`);
 
-  protected readonly buttonStyle = computed(() => this.active() ? 'active' : '');
-
   protected handleClick(event: MouseEvent) {
     console.log(event);
     this.onSelect.emit(this.user().id);
