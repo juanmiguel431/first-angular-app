@@ -44,8 +44,8 @@ export class UserTasks {
   });
 
   protected onTaskCompleted(event: UserTaskEvent) {
-    this.tasks.update(() =>
-      this.tasks().map((t) =>
+    this.tasks.update(tasks =>
+      tasks.map((t) =>
         t.id === event.task.id ? { ...t, completed: true } : t
       ));
   }
