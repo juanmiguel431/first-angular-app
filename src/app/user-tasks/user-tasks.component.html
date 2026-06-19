@@ -10,7 +10,7 @@
   <ul>
     @for (task of tasks(); track task.id) {
       <li>
-        <app-user-task/>
+        <app-user-task [task]="task"/>
       </li>
     }
   </ul>
