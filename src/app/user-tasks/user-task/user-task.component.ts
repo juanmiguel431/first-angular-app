@@ -1,5 +1,5 @@
-import { Component, input, Input } from '@angular/core';
-import { Task } from '../../models';
+import { Component, input, Input, output } from '@angular/core';
+import type { Task, UserTaskEvent } from '../../models';
 
 @Component({
   selector: 'app-user-task',
@@ -9,4 +9,9 @@ import { Task } from '../../models';
 })
 export class UserTask {
   public task = input.required<Task>();
+  public onComplete = output<UserTaskEvent>();
+
+  protected onCompletedClick(event: MouseEvent) {
+    this.onComplete.emit({ event, task: this.task() });
+  }
 }

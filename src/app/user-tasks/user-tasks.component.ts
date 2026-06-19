@@ -1,6 +1,6 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, signal } from '@angular/core';
 import { UserTask } from './user-task/user-task.component';
-import type { Task, User } from '../models';
+import type { Task, User, UserTaskEvent } from '../models';
 
 const DUMMY_TASKS: Task[] = [
   {
@@ -9,6 +9,7 @@ const DUMMY_TASKS: Task[] = [
     title: 'Master Angular',
     summary: 'Learn all the basic and advanced features of Angular & how to apply them.',
     dueDate: '2025-12-31',
+    completed: false,
   },
   {
     id: 't2',
@@ -16,6 +17,7 @@ const DUMMY_TASKS: Task[] = [
     title: 'Build first prototype',
     summary: 'Build a first prototype of the online shop website',
     dueDate: '2024-05-31',
+    completed: false,
   },
   {
     id: 't3',
@@ -23,6 +25,7 @@ const DUMMY_TASKS: Task[] = [
     title: 'Prepare issue template',
     summary: 'Prepare and describe an issue template which will help with project management',
     dueDate: '2024-06-15',
+    completed: false,
   },
 ];
 
@@ -34,8 +37,16 @@ const DUMMY_TASKS: Task[] = [
 })
 export class UserTasks {
   public readonly user = input.required<User>();
+  private tasks = signal(DUMMY_TASKS);
 
-  protected tasks = computed(() => {
-    return DUMMY_TASKS.filter(t => t.userId === this.user().id);
+  protected activeTasks = computed(() => {
+    return this.tasks().filter((t) => t.userId === this.user().id && !t.completed);
   });
+
+  protected onTaskCompleted(event: UserTaskEvent) {
+    this.tasks.update(() =>
+      this.tasks().map((t) =>
+        t.id === event.task.id ? { ...t, completed: true } : t
+      ));
+  }
 }

@@ -11,4 +11,10 @@ export type Task = {
   title: string;
   summary: string;
   dueDate: string;
+  completed: boolean;
 }
+
+export type UserTaskEvent = {
+  event: MouseEvent;
+  task: Task;
+};
