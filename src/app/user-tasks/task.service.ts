@@ -1,14 +1,19 @@
-import { DUMMY_TASKS } from '../constants';
+// import { DUMMY_TASKS } from '../constants';
 import type { Task, UserTaskFormDto } from '../models';
 import { v4 as uuidv4 } from 'uuid';
-import { Injectable, signal } from '@angular/core';
+import { Injectable, signal, WritableSignal } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class TaskService {
-  private tasks = signal(DUMMY_TASKS);
+  private readonly tasks: WritableSignal<Task[]>;
+
+  constructor() {
+    const tasksFromLS = localStorage.getItem('tasks');
+    this.tasks = signal(tasksFromLS ? JSON.parse(tasksFromLS) : []);
+  }
 
   public getActiveUserTasks(userId: string) {
-    return this.tasks().filter(t => t.userId === userId && !t.completed);
+    return this.tasks().filter((t) => t.userId === userId && !t.completed);
   }
 
   public create(model: UserTaskFormDto, userId: string) {
@@ -21,16 +26,25 @@ export class TaskService {
       dueDate: model.dueDate,
     };
 
-    this.tasks.update(tasks => {
+    this.tasks.update((tasks) => {
       return [...tasks, newTask];
     });
+
+    this.save();
 
     return newTask;
   }
 
   public complete(taskId: string) {
-    this.tasks.update(tasks =>
+    this.tasks.update((tasks) =>
       tasks.map((t) => (t.id === taskId ? { ...t, completed: true } : t)),
     );
+
+    this.save();
+  }
+
+  private save() {
+    const tasks = this.tasks();
+    localStorage.setItem('tasks', JSON.stringify(tasks));
   }
 }

@@ -23,7 +23,7 @@ export class UserTasks {
     return this.taskService.getActiveUserTasks(this.user().id);
   });
 
-  protected onAddTask() {
+  protected onAddTask(event: MouseEvent) {
     this.openCreateForm = true;
   }
 
