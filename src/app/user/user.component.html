@@ -1,4 +1,4 @@
-<div>
+<app-card>
   <button (click)="handleClick($event)" [class.active]="active()">
     <img
       [ngSrc]="imagePath()"
@@ -8,4 +8,4 @@
     />
     <span>{{ user().name }}</span>
   </button>
-</div>
+</app-card>
