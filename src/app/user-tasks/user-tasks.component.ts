@@ -1,6 +1,6 @@
 import { Component, computed, input } from '@angular/core';
 import { UserTask } from './user-task/user-task.component';
-import type { Task, User, UserTaskEvent, UserTaskFormDto } from '../models';
+import type { User, UserTaskFormDto } from '../models';
 import { UserTaskForm } from './user-task-form/user-task-form';
 import { TaskService } from './task.service';
 
@@ -23,11 +23,7 @@ export class UserTasks {
     return this.taskService.getActiveUserTasks(this.user().id);
   });
 
-  protected onTaskCompleted(event: UserTaskEvent) {
-    this.taskService.complete(event.task.id);
-  }
-
-  protected onAddTask(event: MouseEvent) {
+  protected onAddTask() {
     this.openCreateForm = true;
   }
 

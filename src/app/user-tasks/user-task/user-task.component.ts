@@ -1,7 +1,8 @@
-import { Component, input, Input, output } from '@angular/core';
-import type { Task, UserTaskEvent } from '../../models';
+import { Component, inject, input } from '@angular/core';
+import type { Task } from '../../models';
 import { Card } from '../../shared/card/card';
 import { DatePipe } from '@angular/common';
+import { TaskService } from '../task.service';
 
 @Component({
   selector: 'app-user-task',
@@ -11,9 +12,9 @@ import { DatePipe } from '@angular/common';
 })
 export class UserTask {
   public task = input.required<Task>();
-  public onComplete = output<UserTaskEvent>();
+  private readonly taskService = inject(TaskService);
 
   protected onCompletedClick(event: MouseEvent) {
-    this.onComplete.emit({ event, task: this.task() });
+    this.taskService.complete(this.task().id);
   }
 }

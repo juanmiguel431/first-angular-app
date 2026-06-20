@@ -22,10 +22,7 @@
     <ul>
       @for (task of activeTasks(); track task.id) {
         <li>
-          <app-user-task
-            [task]="task"
-            (onComplete)="onTaskCompleted($event)"
-          />
+          <app-user-task [task]="task"/>
         </li>
       }
     </ul>
