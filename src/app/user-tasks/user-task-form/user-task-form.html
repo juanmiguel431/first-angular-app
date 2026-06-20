@@ -1,6 +1,6 @@
 
 
-<div>
+<form (ngSubmit)="onFormSubmit()">
   <label for="title">Title</label>
   <input
     type="text"
@@ -40,5 +40,5 @@
   <br>
   <br>
 
-  <button (click)="onFormSubmit()">Submit</button>
-</div>
+  <button type="submit">Submit</button>
+</form>
