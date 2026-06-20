@@ -1,4 +1,4 @@
-import { Component, output } from '@angular/core';
+import { Component, output, signal } from '@angular/core';
 import { UserTaskFormDto } from '../../models';
 import { FormsModule } from '@angular/forms';
 
@@ -9,9 +9,9 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './user-task-form.css',
 })
 export class UserTaskForm {
-  protected title: string = '';
-  protected summary: string = '';
-  protected dueDate: string = '';
+  protected title = signal('');
+  protected summary = signal('');
+  protected dueDate = signal('');
 
   public onClose = output();
   public onSubmit = output<UserTaskFormDto>();
@@ -22,9 +22,9 @@ export class UserTaskForm {
 
   protected onFormSubmit() {
     this.onSubmit.emit({
-      title: this.title,
-      summary: this.summary,
-      dueDate: this.dueDate,
+      title: this.title(),
+      summary: this.summary(),
+      dueDate: this.dueDate(),
     });
   }
 }
