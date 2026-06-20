@@ -1,9 +1,10 @@
 import { Component, output } from '@angular/core';
 import { UserTaskFormDto } from '../../models';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-user-task-form',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './user-task-form.html',
   styleUrl: './user-task-form.css',
 })
@@ -23,22 +24,7 @@ export class UserTaskForm {
     this.onSubmit.emit({
       title: this.title,
       summary: this.summary,
-      dueDate: this.dueDate
+      dueDate: this.dueDate,
     });
-  }
-
-  protected onFormTitleChange(event: Event) {
-    const target = event.target as HTMLInputElement;
-    this.title = target.value;
-  }
-
-  protected onFormSummaryChange(event: Event) {
-    const target = event.target as HTMLInputElement;
-    this.summary = target.value;
-  }
-
-  protected onFormDueDateChange(event: Event) {
-    const target = event.target as HTMLInputElement;
-    this.dueDate = target.value;
   }
 }

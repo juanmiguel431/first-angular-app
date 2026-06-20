@@ -6,8 +6,7 @@
     type="text"
     name="title"
     id="title"
-    [value]="title"
-    (input)="onFormTitleChange($event)"
+    [(ngModel)]="title"
   />
 
   <br>
@@ -18,8 +17,7 @@
     type="text"
     name="summary"
     id="summary"
-    [value]="summary"
-    (input)="onFormSummaryChange($event)"
+    [(ngModel)]="summary"
   >
 
 
@@ -31,8 +29,7 @@
     type="date"
     name="dueDate"
     id="dueDate"
-    [value]="dueDate"
-    (input)="onFormDueDateChange($event)"
+    [(ngModel)]="dueDate"
   >
 
   <br>
