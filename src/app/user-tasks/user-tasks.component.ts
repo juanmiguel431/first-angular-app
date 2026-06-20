@@ -1,9 +1,8 @@
-import { Component, computed, input, signal } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { UserTask } from './user-task/user-task.component';
 import type { Task, User, UserTaskEvent, UserTaskFormDto } from '../models';
-import { DUMMY_TASKS } from '../constants';
 import { UserTaskForm } from './user-task-form/user-task-form';
-import { v4 as uuidv4 } from 'uuid';
+import { TaskService } from './task.service';
 
 @Component({
   selector: 'app-user-tasks',
@@ -13,18 +12,19 @@ import { v4 as uuidv4 } from 'uuid';
 })
 export class UserTasks {
   public readonly user = input.required<User>();
-  private tasks = signal(DUMMY_TASKS);
   protected openCreateForm = false;
+  private taskService: TaskService;
+
+  constructor(taskService: TaskService) {
+    this.taskService = taskService;
+  }
 
   protected activeTasks = computed(() => {
-    return this.tasks().filter((t) => t.userId === this.user().id && !t.completed);
+    return this.taskService.getActiveUserTasks(this.user().id);
   });
 
   protected onTaskCompleted(event: UserTaskEvent) {
-    this.tasks.update(tasks =>
-      tasks.map((t) =>
-        t.id === event.task.id ? { ...t, completed: true } : t
-      ));
+    this.taskService.complete(event.task.id);
   }
 
   protected onAddTask(event: MouseEvent) {
@@ -36,19 +36,7 @@ export class UserTasks {
   }
 
   protected onFormSubmit(event: UserTaskFormDto) {
-    const newTask: Task = {
-      userId: this.user().id,
-      id: uuidv4(),
-      title: event.title,
-      summary: event.summary,
-      completed: false,
-      dueDate: event.dueDate,
-    };
-
-    this.tasks.update((tasks) => {
-      return [...tasks, newTask];
-    });
-
+    this.taskService.create(event, this.user().id);
     this.onFormClose();
   }
 }
