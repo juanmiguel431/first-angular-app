@@ -1,10 +1,6 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { Header } from './header/header';
-import { UserComponent } from './user/user.component';
 import { DUMMY_USERS } from './dummy-users';
 import { User } from './models';
-import { UserTasks } from './user-tasks/user-tasks.component';
 
 const usersMap = new Map<string, User>(
   DUMMY_USERS.map((user) => [user.id, user])
@@ -12,11 +8,12 @@ const usersMap = new Map<string, User>(
 
 @Component({
   selector: 'app-root',
-  imports: [Header, UserComponent, UserTasks],
-  templateUrl: './app.html',
-  styleUrl: './app.css',
+  standalone: false,
+  // imports: [Header, UserComponent, UserTasks], // Only standalone components can use imports
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css',
 })
-export class App {
+export class AppComponent {
   protected readonly users: User[] = DUMMY_USERS;
   protected selectedUser: User | undefined;
 
