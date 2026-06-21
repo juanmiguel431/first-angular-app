@@ -15,7 +15,6 @@ export class UserComponent {
   protected readonly imagePath = computed(() => `images/users/${this.user().avatar}`);
 
   protected handleClick(event: MouseEvent) {
-    console.log(event);
     this.onSelect.emit(this.user().id);
   }
 }

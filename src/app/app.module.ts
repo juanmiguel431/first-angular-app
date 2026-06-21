@@ -2,17 +2,14 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { Header } from './header/header';
 import { UserComponent } from './user/user.component';
-import { UserTasks } from './user-tasks/user-tasks.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { UserTask } from './user-tasks/user-task/user-task.component';
-import { UserTaskForm } from './user-tasks/user-task-form/user-task-form';
-import { FormsModule } from '@angular/forms';
 import { NgOptimizedImage } from '@angular/common';
 import { SharedModule } from './shared/shared.module';
+import { TasksModule } from './user-tasks/tasks.module';
 
 @NgModule({
-  declarations: [AppComponent, Header, UserTasks, UserTaskForm, UserTask, UserComponent],
+  declarations: [AppComponent, Header, UserComponent],
   bootstrap: [AppComponent],
-  imports: [BrowserModule, FormsModule, NgOptimizedImage, SharedModule],
+  imports: [BrowserModule, NgOptimizedImage, SharedModule, TasksModule],
 })
 export class AppModule {}

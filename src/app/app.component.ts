@@ -9,7 +9,6 @@ const usersMap = new Map<string, User>(
 @Component({
   selector: 'app-root',
   standalone: false,
-  // imports: [Header, UserComponent, UserTasks], // Only standalone components can use imports
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
