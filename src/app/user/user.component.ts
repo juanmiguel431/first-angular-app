@@ -1,13 +1,11 @@
 import { Component, computed, input, output } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
 import { User } from '../models';
-import { Card } from '../shared/card/card';
 
 @Component({
   selector: 'app-user',
-  imports: [NgOptimizedImage, Card],
   templateUrl: './user.component.html',
   styleUrl: './user.component.css',
+  standalone: false,
 })
 export class UserComponent {
   public readonly user = input.required<User>();

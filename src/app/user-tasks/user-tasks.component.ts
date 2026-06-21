@@ -1,14 +1,12 @@
 import { Component, computed, input } from '@angular/core';
-import { UserTask } from './user-task/user-task.component';
 import type { User, UserTaskFormDto } from '../models';
-import { UserTaskForm } from './user-task-form/user-task-form';
 import { TaskService } from './task.service';
 
 @Component({
   selector: 'app-user-tasks',
-  imports: [UserTask, UserTaskForm],
   templateUrl: './user-tasks.component.html',
   styleUrl: './user-tasks.component.css',
+  standalone: false,
 })
 export class UserTasks {
   public readonly user = input.required<User>();

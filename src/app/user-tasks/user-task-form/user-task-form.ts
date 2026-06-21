@@ -1,12 +1,11 @@
 import { Component, output, signal } from '@angular/core';
 import { UserTaskFormDto } from '../../models';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-user-task-form',
-  imports: [FormsModule],
   templateUrl: './user-task-form.html',
   styleUrl: './user-task-form.css',
+  standalone: false,
 })
 export class UserTaskForm {
   protected title = signal('');
