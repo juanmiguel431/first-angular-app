@@ -13,6 +13,6 @@ import { DatePipe, NgOptimizedImage } from '@angular/common';
 @NgModule({
   declarations: [AppComponent, Header, UserTasks, UserTaskForm, Card, UserTask, UserComponent],
   bootstrap: [AppComponent],
-  imports: [BrowserModule, FormsModule, DatePipe, NgOptimizedImage],
+  imports: [BrowserModule, FormsModule, NgOptimizedImage],
 })
 export class AppModule {}
